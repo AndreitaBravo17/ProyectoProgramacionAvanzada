@@ -1,0 +1,68 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2 custom-bg">
+        <img src="../../assets/logo1.png" alt="logo" style="float: right; width: 120px; height: 100px;">
+        Aprobación de Inscripción</div>
+    <div class="page__content shadow p-3 position-relative">
+        <div class="page__content-data position-absolute ancho">
+            <div class="row fs-6">
+                <form [formGroup]="form" class="mt-5">
+                    <div class="form-row d-flex justify-content-between">
+                        <div class="form-group col-md-6 m-2">
+                            <p>Estimado [Nombre del destinatario],</p>
+                        </div>
+
+                        <p>Nos complace informarte que tu inscripción ha sido aprobada. ¡Bienvenido/a a nuestra Academia
+                            de Repostería MAAD!
+                        </p>
+                        <p>A continuación adjunto los datos para el depósito de acuerdo a tu <strong>curso
+                                :</strong>[Nombre del curso]</p>
+                        <ul class="box">
+                            <strong> Banco:</strong> Banco Pichincha <br>
+                            <strong> Tipo de cuenta: </strong>Cuenta corriente <br>
+                            <strong> Número de cuenta:</strong> 2200000000000 <br>
+                            <strong> Nombre del titular:</strong> Academia de Repostería MAAD <br>
+                        </ul>
+                        <p>Te pedimos que por favor subas una imagen del comprobante de pago para completar el proceso
+                            de inscripción.
+                            Puedes hacerlo haciendo clic en el siguiente enlace:</p>
+                            <p>
+                                <input type="file" id="comprobante" style="display: none;">
+                                <a class="cta-button" href="#" onclick="document.getElementById('comprobante').click(); return false;">Subir comprobante</a>
+                              </p>
+                              <script>
+                                document.getElementById('comprobante').addEventListener('change', function() {
+                                  var files = this.files;
+                                  if (files.length > 0) {
+                                    // Aquí puedes agregar código adicional para manejar la subida del archivo.
+                                    console.log('Archivo seleccionado:', files[0]);
+                                  }
+                                });
+                              </script>
+                        <p class="important-text">Recuerda que la imagen debe cumplir con los requisitos especificados
+                            en las instrucciones del
+                            curso.</p>
+
+                        <p>Si tienes alguna pregunta o necesitas ayuda adicional, no dudes en ponerte en contacto con
+                            nosotros.</p>
+
+                        <strong>¡Esperamos verte pronto en nuestra Academia!</strong><br>
+                        <br>
+                        <p>Atentamente,</p>
+
+                        <p>Alejandra Bravo</p>
+                        <p>Secretaria</p>
+                        <p>Academia de Repostería MAAD</p>
+                        <p>resposteria@maad.com</p>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
