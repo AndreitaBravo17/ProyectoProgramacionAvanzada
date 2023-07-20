@@ -1,5 +1,12 @@
 
 @import "../../home/home.component.scss";
+*{
+  -webkit-user-select: none; /* Para navegadores basados en WebKit (Chrome, Safari, etc.) */
+  -moz-user-select: none; /* Para navegadores basados en Gecko (Firefox) */
+  -ms-user-select: none; /* Para Internet Explorer */
+  user-select: none; /* Estándar */
+}
+
 .green {
   background-color: green;
 }
@@ -34,12 +41,12 @@ th{
 }
 
 .mat-form-field {
-  font-size: 10px;
+  font-size: 14px;
   width: 100%;
 }
 
 td, th, a, mat-label {
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .mat-mdc-form-field {

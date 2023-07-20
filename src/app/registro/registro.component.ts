@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl,FormGroup } from '@angular/forms';
 import { Usuario } from '../interfaces/usuario';
-import { ToastrService } from 'ngx-toastr';
-
-
 
 @Component({
   selector: 'app-registro',
@@ -13,13 +10,12 @@ import { ToastrService } from 'ngx-toastr';
 export class RegistroComponent  implements OnInit {
 
   form: FormGroup;
-  siteKey: string = '6LfuUoAmAAAAAHJPEv6DJnLS56XJ4d1S3fn7YvRX'; 
-  captchaValue!: string;
 
   imprirCedulaValida: string = "";
 
   constructor(
-    private formBuilder: FormBuilder,private toastr: ToastrService
+    private formBuilder: FormBuilder,
+    // private toastr: ToastrService,
     ) {
     this.buildForm();
   }
@@ -31,39 +27,16 @@ export class RegistroComponent  implements OnInit {
     this.form = this.formBuilder.group({ // Sirve para validar los campos del formulario y para que se muestre el error en el html cuando el campo no es valido
       nameCtrl: new FormControl('', [Validators.required, Validators.minLength(5)]),
       apellidoCtrl: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      informacinoCtrl: new FormControl('', [Validators.required,Validators.maxLength(10),Validators.minLength(10),Validators.pattern('^[0-9]+$')]),
-      correoCtrl: new FormControl('', [Validators.required, Validators.email,Validators.minLength(5)]),
+      informacinoCtrl: new FormControl('', [Validators.required,Validators.maxLength(200),]),
+      correoCtrl: new FormControl('', [Validators.required, Validators.email,Validators.minLength(10)]),
       selectCtrl: new FormControl('', [Validators.required]),
-      edadCtrl: new FormControl('', [Validators.required,Validators.min(18),
-        this.checkValidAge.bind(this)]),
+      edadCtrl: new FormControl('', [Validators.required]),
       ciudadCtrl: new FormControl('', [Validators.required]),
-      generoCtrl: new FormControl('',[Validators.required]),
-      termsAndConditions: [false, Validators.requiredTrue],
-     /* captcha: ['', Validators.required]*/
+      generoCtrl: new FormControl('',[Validators.required])
     });
   }
 
-  get edadCtrl() {
-    return this.form.get('edadCtrl');
-  }
-
-  checkValidAge(control: FormControl) {
-    const age = control.value;
-    const isValid = age > 18;
-
-    return isValid ? null : { invalidAge: true };
-  }
-  
-  submitForm(): void {
-    if (this.form.invalid) {
-      const value = this.form.value;
-      console.log(value);
-    }else{
-      this.form.markAllAsTouched();
-    }
-  }
-
-  /*public save(event: Event) {
+  public save(event: Event) {
     event.preventDefault(); // para que no se recargue la pagina al darle click al boton submit
     if (this.form.valid) { // si el formulario es valido se ejecuta el codigo de abajo y se guarda el usuario en la base de datos
       const value = this.form.value;
@@ -73,7 +46,7 @@ export class RegistroComponent  implements OnInit {
 
       this.form.markAllAsTouched();
     }
-  }*/
+  }
 
   agregarUsuario() {
     const usuario: Usuario = {
@@ -84,7 +57,6 @@ export class RegistroComponent  implements OnInit {
       edad: this.form.value.edadCtrl,
       ciudad: this.form.value.ciudadCtrl,
       curso: this.form.value.selectCtrl,
-      genero: this.form.value.generoCtrl
     }
 
     if(this.isValidCI(this.form.value.informacinoCtrl) == false) {
@@ -173,16 +145,6 @@ export class RegistroComponent  implements OnInit {
     return false;
   }
 
-  handleCaptchaResponse(captchaResponse: string): void {
-    this.captchaValue = captchaResponse;
-  }
-  handleCaptchaExpired(): void {
-    this.captchaValue = '';
-  }
 
-  isInvalidControl(controlName: string): boolean {
-    const control = this.form.controls[controlName];
-    return control.invalid && (control.dirty || control.touched );
-  }
 
 }

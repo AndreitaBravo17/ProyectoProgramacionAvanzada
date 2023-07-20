@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { ProductosComponent } from './components/cursos/cursos.component';
+import { PagosComponent } from './components/pagos/pagos.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,9 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { PadreComponent } from './padre/padre.component';
 import { SharedModule } from './components/shared/shared.module';
 import { RegistroComponent } from './registro/registro.component';
-import { PagosComponent } from './components/pagos/pagos.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { InscritosComponent } from './components/inscritos/inscritos.component';
-// import { ToastrModule } from 'ngx-toastr';
+//import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -43,8 +43,8 @@ import { InscritosComponent } from './components/inscritos/inscritos.component';
     SolicitudesComponent,
     SignupComponent,
     PadreComponent,
-    RegistroComponent,
     PagosComponent,
+    RegistroComponent,
     InscritosComponent,
 
   ],
@@ -64,11 +64,9 @@ import { InscritosComponent } from './components/inscritos/inscritos.component';
     HttpClientModule,
     SharedModule,
     MatMenuModule,
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true,
-    }),
+    MatFormFieldModule,
+
+
 
   ],
   providers: [

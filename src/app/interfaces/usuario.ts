@@ -6,5 +6,4 @@ export interface Usuario {
   edad : number;
   curso: string;
   ciudad: string;
-  genero : string;
 }

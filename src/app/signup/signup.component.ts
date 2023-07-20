@@ -15,25 +15,20 @@ import { RegistroComponent } from '../registro/registro.component';
 })
 export class SignupComponent implements OnInit {
 
-  form: FormGroup;
-
   user = {
     email: '',
     password: '',
   }
 
-  constructor( private formBuilder: FormBuilder, private router: Router,) {
-    this.form = this.formBuilder.group({ // Sirve para validar los campos del formulario y para que se muestre el error en el html cuando el campo no es valido
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+  ) {}
 
-      correo: new FormControl('', [Validators.required, Validators.email, Validators.minLength(5)]),
-      pass: new FormControl('', [Validators.required]),
-    }
-    )
-  }
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   signIn() {
-    this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard']);
   }
 
 }

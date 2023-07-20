@@ -1,3 +1,10 @@
+*{
+  -webkit-user-select: none; /* Para navegadores basados en WebKit (Chrome, Safari, etc.) */
+  -moz-user-select: none; /* Para navegadores basados en Gecko (Firefox) */
+  -ms-user-select: none; /* Para Internet Explorer */
+  user-select: none; /* Estándar */
+}
+
 :host {
   display: flex;
   flex-direction: column;
@@ -13,5 +20,6 @@ mat-drawer-container {
 
 mat-drawer {
   background: linear-gradient(0deg, rgba(0,6,84,1) 0%, rgba(0,0,0,1) 86%);
-
 }
+
+

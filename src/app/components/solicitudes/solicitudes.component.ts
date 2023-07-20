@@ -12,15 +12,10 @@ import { Usuario } from 'src/app/interfaces/usuario';
 })
 export class SolicitudesComponent implements OnInit {
 
-  //listUsuarios: Usuario[] = [];
-  displayedColumns: string[] = ['position', 'nombre', 'apellido', 'cedula', 'correo', 'edad', 'curso', 'ciudad', 'genero', 'acciones'];
-  dataSource = new MatTableDataSource<any>([
-    { position: 1, nombre: 'Juan', apellido: 'Pérez', cedula: '12345678', correo: 'juan@example.com', edad: 25, curso: 'Pasteles', ciudad: 'Caracas', genero: 'Masculino' },
-    { position: 2, nombre: 'María', apellido: 'González', cedula: '87654321', correo: 'maria@example.com', edad: 30, curso: 'Budines', ciudad: 'Madrid', genero: 'Femenino' }
-  ]);
+  listUsuarios: Usuario[] = [];
 
-  //displayedColumns: string[] = ['position', 'nombre', 'apellido', 'cedula', 'correo', 'edad','curso','ciudad','genero', 'acciones'];
- // dataSource = new MatTableDataSource<any>(this.listUsuarios);
+  displayedColumns: string[] = ['position', 'nombre', 'apellido', 'cedula', 'correo', 'acciones'];
+  dataSource = new MatTableDataSource<any>(this.listUsuarios);
 
   constructor() {
 
@@ -69,13 +64,12 @@ export class SolicitudesComponent implements OnInit {
   }
 
   cargarUsuarios() {
-    //this.listUsuarios = this._usuarioService.getUsuarios();
+    // this.listUsuarios = this._usuarioService.getUsuarios();
+    // this.dataSource = new MatTableDataSource<any>(this.listUsuarios);
   }
 
   obtenerUsuario() {
   }
-  
- 
-  
+
 
 }

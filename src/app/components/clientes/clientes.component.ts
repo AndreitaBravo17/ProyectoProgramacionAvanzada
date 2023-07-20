@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl,FormGroup } from '@angular/forms';
 import { Usuario } from '../../interfaces/usuario';
-// import { ToastrService } from 'ngx-toastr';
+ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-clientes',
@@ -16,7 +16,7 @@ export class ClientesComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    // private toastr: ToastrService,
+     private toastr: ToastrService,
     ) {
     this.buildForm();
   }
@@ -44,7 +44,7 @@ export class ClientesComponent implements OnInit {
       console.log(value);
     } else {
 
-      
+
       this.form.markAllAsTouched();
     }
   }
@@ -58,7 +58,6 @@ export class ClientesComponent implements OnInit {
       edad: this.form.value.edadCtrl,
       ciudad: this.form.value.ciudadCtrl,
       curso: this.form.value.selectCtrl,
-      genero: this.form.value.generoCtrl,
     }
 
     if(this.isValidCI(this.form.value.informacinoCtrl) == false) {
@@ -147,6 +146,6 @@ export class ClientesComponent implements OnInit {
     return false;
   }
 
- 
+
 
 }

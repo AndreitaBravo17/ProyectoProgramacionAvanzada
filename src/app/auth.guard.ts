@@ -13,5 +13,4 @@ import { Observable } from 'rxjs';
 })
 export class AuthGuard {
   constructor(private router: Router) {}
-
 }

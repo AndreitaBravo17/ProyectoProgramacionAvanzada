@@ -1,10 +1,17 @@
+*{
+  -webkit-user-select: none; /* Para navegadores basados en WebKit (Chrome, Safari, etc.) */
+  -moz-user-select: none; /* Para navegadores basados en Gecko (Firefox) */
+  -ms-user-select: none; /* Para Internet Explorer */
+  user-select: none; /* Estándar */
+}
+
 .page {
-  color: rgb(0, 0, 0);
+  color: white;
   padding: 0 1rem;
   background: #f1f5f9;
   &__box {
     min-height: 100px;
-    background: linear-gradient(blue, pink);
+    background: linear-gradient(90deg, rgba(1,0,36,1) 0%, rgba(9,9,121,0.43461134453781514) 80%);
 
     margin: 0 -1rem;
     font-size: 36px;
@@ -15,10 +22,10 @@
 
     background: white;
     color: black;
-    font-size: 25px;
+    font-size: 2rem;
     &-data {
-      top: 50%;
-      left: 50%;
+      top: 45%;
+      left: 45%;
       transform: translate(-50%, -50%);
     }
   }

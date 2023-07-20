@@ -1,26 +1,22 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2 custom-bg">
-    <img src="../../assets/logo1.png" alt="logo" style="float: right; width: 120px; height: 100px;">
-    Inscripción</div>
+  <div class="d-flex page__box p-3 mt-2 custom-bg ">Registro Estudiantes</div>
   <div class="page__content shadow p-3 position-relative">
     <div class="page__content-data position-absolute text-center ancho">
       <div class="row fs-6">
-        <form [formGroup]="form"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <form [formGroup]="form">
           <div class="form-row d-flex justify-content-between ">
             <div class="form-group col-md-6 m-2">
               <label for="inputEmail4">Nombre</label>
-              <input type="text" class="form-control" id="inputEmail4" placeholder="Nombre" formControlName="nameCtrl"
-                pattern="[a-zA-Z ]*">
+              <input type="text" class="form-control" id="inputEmail4" placeholder="Nombre" formControlName="nameCtrl" pattern="[a-zA-Z ]*">
               <div *ngIf="form.get('nameCtrl')?.errors && form.get('nameCtrl')?.touched" class="text-danger">
                 <p *ngIf="form.get('nameCtrl')?.hasError('minlength')">Mínimo 5 caracteres</p>
-                <p *ngIf="form.get('nameCtrl')?.hasError('required')">El nombre es requerido</p>
+                <p *ngIf="form.get('nameCtrl')?.hasError('required')">Es un campo requerido</p>
                 <p *ngIf="form.get('nameCtrl')?.hasError('pattern')">Solo se permiten letras</p>
               </div>
             </div>
             <div class="form-group col-md-6 m-2">
               <label for="inputPassword4">Apellido</label>
-              <input type="text" class="form-control" id="inputPassword4" placeholder="Apellido"
-                formControlName="apellidoCtrl" pattern="[a-zA-Z ]*">
+              <input type="text" class="form-control" id="inputPassword4" placeholder="Apellido" formControlName="apellidoCtrl" pattern="[a-zA-Z ]*">
               <div *ngIf="form.get('apellidoCtrl')?.errors && form.get('apellidoCtrl')?.touched" class="text-danger">
                 <p *ngIf="form.get('apellidoCtrl')?.hasError('minlength')">Minimo 5 catacteres</p>
                 <p *ngIf="form.get('apellidoCtrl')?.hasError('required')">El apellido requerido</p>
@@ -31,21 +27,16 @@
           <div class="form-row d-flex justify-content-between ">
             <div class="form-group col-md-6 m-2">
               <label for="inputEmail4">Identificación</label>
-              <input type="text" class="form-control" id="inputEmail4" placeholder="Identificación"
-                formControlName="informacinoCtrl">
+              <input type="text" class="form-control" id="inputEmail4" placeholder="Identificación" formControlName="informacinoCtrl">
               <p>{{imprirCedulaValida}}</p>
-              <div *ngIf="form.get('informacinoCtrl')?.errors && form.get('informacinoCtrl')?.touched"
-                class="text-danger">
-                <p *ngIf="form.get('informacinoCtrl')?.hasError('minlength')">Mínimo 10 catacteres</p>
-                <p *ngIf="form.get('informacinoCtrl')?.hasError('maxlength')">Máximo 10 catacteres</p>
+              <div *ngIf="form.get('informacinoCtrl')?.errors && form.get('informacinoCtrl')?.touched" class="text-danger">
+                <p *ngIf="form.get('informacinoCtrl')?.hasError('minlength')">Minimo 10 catacteres</p>
                 <p *ngIf="form.get('informacinoCtrl')?.hasError('required')">Identificación requerido</p>
-                <p *ngIf="form.get('informacinoCtrl')?.hasError('pattern')">Solo se acepta números</p>
               </div>
             </div>
             <div class="form-group col-md-6 m-2">
-              <label for="inputPassword4">Correo Electrónico</label>
-              <input type="email" class="form-control" id="inputPassword4" placeholder="Correo"
-                formControlName="correoCtrl">
+              <label for="inputPassword4">Correo</label>
+              <input type="email" class="form-control" id="inputPassword4" placeholder="Correo" formControlName="correoCtrl">
               <div *ngIf="form.get('correoCtrl')?.errors && form.get('correoCtrl')?.touched" class="text-danger">
                 <p *ngIf="form.get('correoCtrl')?.hasError('minlength')">Mínimo 10 caracteres</p>
                 <p *ngIf="form.get('correoCtrl')?.hasError('required')">El correo es requerido</p>
@@ -58,78 +49,61 @@
               <label for="inputEmail4">Edad</label>
               <input type="number" class="form-control" id="inputEmail4" placeholder="edad" formControlName="edadCtrl">
               <div *ngIf="form.get('edadCtrl')?.errors && form.get('edadCtrl')?.touched" class="text-danger">
-                <p *ngIf="edadCtrl.hasError('required')">La edad es requerida</p>
-                <p *ngIf="edadCtrl.hasError('min')">La edad debe ser mayor de 18 años</p>
+                <p *ngIf="form.get('edadCtrl')?.hasError('minlength')">Minimo 6 catacteres</p>
+                <p *ngIf="form.get('edadCtrl')?.hasError('required')">La edad requerido</p>
               </div>
             </div>
             <div class="form-group col-md-6 m-2">
               <label for="inputState">Cursos</label>
               <select class="form-select" aria-label="Default select example" formControlName="selectCtrl">
-                <option value="" disabled selected>Seleccione una opción</option>
+                <option selected>Seleccione una opcion</option>
                 <option value="1">Pasteles $80</option>
                 <option value="2">Galletas $50</option>
-                <option value="3">Budines $50</option>
+                <option value="3">Budines  $50</option>
                 <option value="4">Bizcocho $30</option>
               </select>
               <div *ngIf="form.get('selectCtrl')?.errors && form.get('selectCtrl')?.touched" class="text-danger">
+                <p *ngIf="form.get('selectCtrl')?.hasError('minlength')">Minimo 6 catacteres</p>
                 <p *ngIf="form.get('selectCtrl')?.hasError('required')">Curso requerido</p>
               </div>
+              <!-- https://www.inesem.ec/Experto-Registro-Medicamentos-Y-Regulacion -->
             </div>
           </div>
           <div class="form-row d-flex justify-content-between ">
             <div class="form-group col-md-6 m-2">
               <label for="inputState">Ciudad</label>
               <select class="form-select" aria-label="Default select example" formControlName="ciudadCtrl">
-                <option value="" disabled selected>Seleccione una opción</option>
+                <option selected>Seleccione una opcion</option>
                 <option value="1">Santo Domingo</option>
                 <option value="2">Quito</option>
                 <option value="3">Guayaquil</option>
               </select>
               <div *ngIf="form.get('ciudadCtrl')?.errors && form.get('ciudadCtrl')?.touched" class="text-danger">
+                <p *ngIf="form.get('ciudadCtrl')?.hasError('minlength')">Minimo 6 catacteres</p>
                 <p *ngIf="form.get('ciudadCtrl')?.hasError('required')">Elija una Ciudad</p>
               </div>
+              <!-- https://www.inesem.ec/Experto-Registro-Medicamentos-Y-Regulacion -->
             </div>
             <div class="form-group col-md-6 m-2">
-              <label for="inputState">Género</label>
+              <label for="inputState">Genero</label>
               <select class="form-select" aria-label="Default select example" formControlName="generoCtrl">
-                <option value="" disabled selected>Seleccione una opción</option>
+                <option selected>Seleccione una opcion</option>
                 <option value="1">Hombre</option>
                 <option value="2">Mujer</option>
                 <option value="3">Otro</option>
               </select>
               <div *ngIf="form.get('generoCtrl')?.errors && form.get('generoCtrl')?.touched" class="text-danger">
-                <p *ngIf="form.get('generoCtrl')?.hasError('required')">Elija su Género</p>
+                <p *ngIf="form.get('generoCtrl')?.hasError('minlength')">Minimo 6 catacteres</p>
+                <p *ngIf="form.get('generoCtrl')?.hasError('required')">Elija su Genero</p>
               </div>
             </div>
           </div>
           <!-- <div class="row bg-danger text-white w-100 rounded">
             dwa
               </div> -->
-          <br>
-          <div class="form-group">
-            <div>
-              <div class="form-group" [class.invalid]="isInvalidControl('termsAndConditions')">
-                <label for="termsAndConditions">
-                  <input type="checkbox" id="termsAndConditions" formControlName="termsAndConditions">
-                  Acepto los términos y condiciones
-                </label>
-                <div class="error-message" *ngIf="isInvalidControl('termsAndConditions')">
-                  <span>Acepta los términos y condiciones para continuar.</span>
-                </div>
-              </div>
-            </div><br>
-            <!--<div class="form-group">
-                  <div class="form-group" [class.invalid]="isInvalidControl('captcha')">
-                    <ngx-recaptcha2 siteKey="6LfuUoAmAAAAAHJPEv6DJnLS56XJ4d1S3fn7YvRX"
-                      (resolved)="handleCaptchaResponse(captchaValue)" (expired)="handleCaptchaExpired()"
-                      formControlName="captcha"></ngx-recaptcha2>
-                    <div *ngIf="form.get('captcha')?.invalid && (form.get('captcha')?.dirty || 
-                    form.get('captcha')?.touched)" class="text-danger">Por favor, completa el captcha.</div>
-                  </div><br>
-                </div> -->
-          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
-        <br><br><br>
+          <br>
         <!--SECCION INFORMATIVA DE LOS CURSOS-->
         <div class="container">
           <div class="row">
@@ -174,10 +148,8 @@
               </div>
             </div>
           </div>
-        </div><br><br>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Enviar</button>
-
     </div>
   </div>
 </div>

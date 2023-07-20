@@ -2,6 +2,10 @@
 @import 'ngx-toastr/toastr';
 * {
   font-family: "Montserrat", sans-serif;
+  -webkit-user-select: none; /* Para navegadores basados en WebKit (Chrome, Safari, etc.) */
+  -moz-user-select: none; /* Para navegadores basados en Gecko (Firefox) */
+  -ms-user-select: none; /* Para Internet Explorer */
+  user-select: none; /* Estándar */
 }
 
 html,
@@ -12,3 +16,4 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+

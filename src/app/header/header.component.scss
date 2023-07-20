@@ -1,3 +1,10 @@
+*{
+  -webkit-user-select: none; /* Para navegadores basados en WebKit (Chrome, Safari, etc.) */
+  -moz-user-select: none; /* Para navegadores basados en Gecko (Firefox) */
+  -ms-user-select: none; /* Para Internet Explorer */
+  user-select: none; /* Estándar */
+}
+
 mat-toolbar {
   position: sticky;
   top: 0;
