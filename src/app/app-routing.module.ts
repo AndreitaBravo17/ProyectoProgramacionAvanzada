@@ -22,7 +22,7 @@ const routes: Routes = [
   ],
 
 
-  canActivate: [AuthGuard],
+  //canActivate: [AuthGuard],
  },
   { path: 'login', component: SignupComponent,
   },
