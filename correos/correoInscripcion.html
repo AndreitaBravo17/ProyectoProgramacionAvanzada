@@ -1,0 +1,141 @@
+<head>
+    <style>
+        body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+
+.custom-bg[_ngcontent-xow-c161] {
+  background: linear-gradient(blue, pink);
+}
+
+.page__box[_ngcontent-xow-c161] {
+  min-height: 100px;
+  background: linear-gradient(blue, pink);
+  margin: 0 -1rem;
+  font-size: 36px;
+}
+
+.p-3 {
+  padding: 1rem !important;
+}
+
+.mt-2 {
+  margin-top: 0.5rem !important;
+}
+
+
+h2 {
+  color: #333;
+}
+
+p {
+  color: #555;
+  text-align: center;
+}
+.important-text {
+  font-weight: bold;
+  color: red;
+}
+.box {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 4px;
+  text-align: inherit;
+}
+
+.container-fluid {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.custom-bg {
+  background: linear-gradient(blue, pink);
+  color: rgb(0, 0, 0);
+  font-size: 24px;
+}
+
+.page__content {
+  min-height: calc(100vh - 178px);
+  border-radius: 10px;
+  background: white;
+  color: black;
+  font-size: 16px;
+  padding: 80px;
+  text-align: center;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.cta-button:hover {
+  background-color: rgb(255, 95, 194);
+}
+
+.ancho {
+  width: 85%;
+  margin: 0 auto;
+}
+    </style>
+</head>
+
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2 custom-bg">
+        <img src="../../assets/logo1.png" alt="logo" style="float: right; width: 120px; height: 100px;">
+        Inscripción</div>
+    <div class="page__content shadow p-3 position-relative">
+        <div class="page__content-data position-absolute ancho">
+            <div class="row fs-6">
+                <form [formGroup]="form" class="mt-5">
+                    <div class="form-row d-flex justify-content-between">
+                        <div class="form-group col-md-6 m-2">
+       
+                            <p>Estimado [Nombre del destinatario],</p>
+                            
+                            <p>Gracias por tu interés a nuestros cursos. Nos complace confirmar que has sido inscrito exitosamente.</p>
+                            
+                            <p>A continuación, te proporcionamos los detalles de tu inscripción:</p>
+                            
+                            <ul class="box">
+                                <strong>Nombre:</strong> [Nombre del participante] <br>
+                                <strong>Apellido:</strong> [Nombre del participante] <br>
+                                <strong>Identificación:</strong> [Identifiación del participante] <br>
+                                <strong>Correo electrónico:</strong> [Correo electrónico del participante] <br>
+                                <strong>Edad:</strong> [Edad del participante] <br>
+                                <strong>Curso:</strong> [Curso del participante] <br> 
+                                <strong>Ciudad:</strong> [Ciudad del participante] <br>
+                                <strong>Género:</strong> [Género del participante] <br>
+                            </ul>
+                            
+                            <p>Si tienes alguna pregunta o necesitas más información, no dudes en ponerte en contacto con nosotros.</p>
+                            
+                            <strong>¡Esperamos verte pronto en nuestra Academia!</strong><br>
+                        <br>
+                        <p>Atentamente,</p>
+
+                        <p>Alejandra Bravo</p>
+                        <p>Secretaria</p>
+                        <p>Academia de Repostería MAAD</p>
+                        <p>resposteria@maad.com</p>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

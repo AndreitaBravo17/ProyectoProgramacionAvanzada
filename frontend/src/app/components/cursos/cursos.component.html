@@ -1,0 +1,76 @@
+<div class="container">
+    <h1>Cursos</h1>
+    <h3>{{modificarActivo ? "Actualizar": "Nuevo"}}</h3>
+    <form class="form" [formGroup]="curso">
+    
+      <div class="input-container">
+        <label for="">Nombre del curso</label>
+        <input type="text" formControlName="nombreCurso" placeholder="Ingrese el curso">
+        <sub class="error {{mensajeError('nombreCurso') && 'hidden'}}">Solo se admiten letras mayusculas, minusculas y espacios. Asegurece de no tener espacios dobles y ni espacios al comienzo ni al final.</sub>
+      </div>
+      <div class="input-container">
+        <label for="">Modalidad</label>
+        <select formControlName="modalidad">
+          <option value="">Seleccionar especialidad</option>
+          <option id="Presencial">Presencial</option>
+          <option id="Virtual">Virtual</option>
+        </select>
+        <sub class="error {{mensajeError('modalidad') && 'hidden'}}">Debes seleccionar una especialidad</sub>
+      </div>
+      <div class="input-container">
+        <label for="">Costo</label>
+        <input type="text" formControlName="costo" placeholder="Ingrese el costo">
+        <sub class="error {{mensajeError('costo') && 'hidden'}}">Solo se permiten números enteros mayores o igual a 0</sub>
+      </div>
+      <div class="input-container">
+        <label for="">Horas</label>
+        <input type="text" formControlName="horas" placeholder="Ingrese las horas">
+        <sub class="error {{mensajeError('horas') && 'hidden'}}">Solo se permiten números enteros mayores o igual a 0</sub>
+      </div>
+      <div class="input-container">
+        <label for="">Fecha de inicio</label>
+        <input type="date" formControlName="fechaInicio">
+        <sub class="error {{mensajeError('fechaInicio') && 'hidden'}}">Debes seleccionar una fecha</sub>
+      </div>
+      <div class="input-container">
+        <div class="btn btn-save {{modificarActivo && 'hidden'}}" (click)="guardarCurso()">Guardar</div>
+        <div class="btn btn-update {{!modificarActivo && 'hidden'}}" (click)="actualizarCurso()">Editar</div>
+        <div class="btn btn-cancel" (click)="resetearForm()">Cancelar</div>
+      </div>
+    </form>
+    <h3>Cursos Registrados</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Nombre del curso</th>
+            <th>Modalidad</th>
+            <th>Costo</th>
+            <th>Horas</th>
+            <th>Fecha de inicio</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="{{cursos.length > 0 ? 'hidden': ''}}">
+            <td class="text-center" colspan="10">No existen registros todavía</td>
+          </tr>
+          <tr *ngFor="let curso of cursos; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{curso.nombreCurso}}</td>
+            <td>{{curso.modalidad}}</td>
+            <td>{{curso.costo}}</td>
+            <td>{{curso.horas}}</td>
+            <td>{{curso.fechaInicio}}</td>
+            <td>
+              <div>
+                <button class="btn-option btn-save" (click)="activarModificar(curso._id)">Editar</button>
+                <button class="btn-option btn-delete" (click)="eliminarCurso(curso._id)">Eliminar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

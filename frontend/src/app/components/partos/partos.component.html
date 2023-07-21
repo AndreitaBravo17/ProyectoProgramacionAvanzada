@@ -1,0 +1,89 @@
+<div class="container">
+  <h1>Partos</h1>
+  <h3>{{modificarActivo ? "Actualizar": "Nuevo"}}</h3>
+  <form class="form" [formGroup]="parto">
+    <div class="input-container">
+      <label for="">Fecha</label>
+      <input type="date" formControlName="fecha">
+      <sub class="error {{mensajeError('fecha') && 'hidden'}}">Debes seleccionar una fecha</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Hora</label>
+      <input type="time" formControlName="hora">
+      <sub class="error {{mensajeError('hora') && 'hidden'}}">Debes seleccionar una hora</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Paciente</label>
+      <select name="paciente" id="paciente" formControlName="paciente">
+        <option value="">Selecciona el paciente</option>
+        <option *ngFor="let paciente of pacientes; let i = index" value="{{paciente._id}}">{{paciente.nombre}}</option>
+      </select>
+      <sub class="error {{mensajeError('paciente') && 'hidden'}}">Debes seleccionar el paciente</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Doctor</label>
+      <select name="doctor" id="doctor" formControlName="doctor">
+        <option value="">Selecciona el doctor</option>
+        <option *ngFor="let doctor of doctores; let i = index" value="{{doctor._id}}">{{doctor.nombre}}</option>
+      </select>
+      <sub class="error {{mensajeError('doctor') && 'hidden'}}">Debes seleccionar el doctor</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Tipo Parto</label>
+      <select name="tipoParto" id="tipoParto" formControlName="tipoParto">
+        <option value="">Seleccionar tipo de parto</option>
+        <option *ngFor="let tipoParto of tipoPartos" value="{{tipoParto._id}}">{{tipoParto.tipo}}</option>
+      </select>
+      <sub class="error {{mensajeError('tipoParto') && 'hidden'}}">Debes seleccionar el tipo de parto</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Peso Bebé</label>
+      <input type="number" formControlName="pesoBebe">
+      <sub class="error {{mensajeError('pesoBebe') && 'hidden'}}">Solo se permiten números decimale superios a 0</sub>
+    </div>
+    <div class="input-container">
+      <div class="btn btn-save {{modificarActivo && 'hidden'}}" (click)="guardarParto()">Guardar</div>
+      <div class="btn btn-update {{!modificarActivo && 'hidden'}}" (click)="actualizarParto()">Editar</div>
+      <div class="btn btn-cancel" (click)="resetearForm()">Cancelar</div>
+    </div>
+  </form>
+  <h3>Registrados</h3>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Paciente</th>
+          <th>Doctor</th>
+          <th>Tipo Parto</th>
+          <th>Peso Bebe (kg)</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="{{partos.length > 0 ? 'hidden': ''}}">
+          <td class="text-center" colspan="10">No existen registros todavía</td>
+        </tr>
+        <tr *ngFor="let parto of partos; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{parto.fecha}}</td>
+          <td>{{parto.hora}}</td>
+          <td>{{parto.paciente.nombre}}</td>
+          <td>{{parto.doctor.nombre}}</td>
+          <td>{{parto.tipoParto.tipo}}</td>
+          <td>{{parto.pesoBebe}}</td>
+          <td>
+            <div>
+              <button class="btn-option btn-save" (click)="activarModificar(parto._id)">Editar</button>
+              <button class="btn-option btn-delete" (click)="eliminarParto(parto._id)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

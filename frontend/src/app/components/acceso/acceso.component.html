@@ -1,0 +1,40 @@
+<div class="login-container">
+  <form [formGroup]="accessForm">
+    <i class="fa-solid fa-school icon-school"></i>
+    <h3 class="app-name">{{appName}}</h3>
+    <input
+      [class.error]="fieldError('email')"
+      type="text"
+      name="email"
+      id="email"
+      placeholder="Email"
+      formControlName="email"
+    >
+    <sub
+      class="error-text"
+      [class.hidden]="messageError('email')">
+        Ingrese un email valido
+    </sub>
+    <input
+      [class.error]="fieldError('clave')"
+      type="password"
+      name="clave"
+      id="clave"
+      placeholder="Contraseña"
+      formControlName="clave">
+    <sub
+    class="error-text"
+    [class.hidden]="messageError('clave')">
+      Contraseña debe tener mínimo 8 caracteres
+    </sub>
+    <input
+      type="submit"
+      (click)="validateUser()"
+      value="Ingresar"/>
+    <sub
+      class="error-text" *ngIf="credentialsError">
+      {{errorMsg}}
+    </sub>
+  </form>
+</div>
+

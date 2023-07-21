@@ -1,0 +1,77 @@
+<div class="container">
+  <h1>Consultas</h1>
+  <h3>{{modificarActivo ? "Actualizar": "Nueva"}}</h3>
+  <form class="form" [formGroup]="consulta">
+    <div class="input-container">
+      <label for="">Fecha</label>
+      <input type="date" formControlName="fecha">
+      <sub class="error {{mensajeError('fecha') && 'hidden'}}">Debes seleccionar una fecha</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Hora</label>
+      <input type="time" formControlName="hora">
+      <sub class="error {{mensajeError('hora') && 'hidden'}}">Debes seleccionar una hora</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Paciente</label>
+      <select name="pacciente" id="paciente" formControlName="paciente">
+        <option value="">Selecciona el paciente</option>
+        <option *ngFor="let paciente of pacientes; let i = index" value="{{paciente._id}}">{{paciente.nombre}}</option>
+      </select>
+      <sub class="error {{mensajeError('paciente') && 'hidden'}}">Debes seleccionar el paciente</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Doctor</label>
+      <select name="doctor" id="doctor" formControlName="doctor">
+        <option value="">Selecciona el doctor</option>
+        <option *ngFor="let doctor of doctores; let i = index" value="{{doctor._id}}">{{doctor.nombre}}</option>
+      </select>
+      <sub class="error {{mensajeError('doctor') && 'hidden'}}">Debes seleccionar el doctor</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Sintomas</label>
+      <textarea name="sintomas" id="sintomas" placeholder="Escribir aqui..." formControlName="sintomas"></textarea>
+      <sub class="error {{mensajeError('sintomas') && 'hidden'}}">Debes escribir los síntomas</sub>
+    </div>
+    <div class="input-container">
+      <div class="btn btn-save {{modificarActivo && 'hidden'}}" (click)="guardarConsulta()">Guardar</div>
+      <div class="btn btn-update {{!modificarActivo && 'hidden'}}" (click)="actualizarConsulta()">Editar</div>
+      <div class="btn btn-cancel" (click)="resetearForm()">Cancelar</div>
+    </div>
+  </form>
+  <h3>Registradas</h3>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Paciente</th>
+          <th>Doctor</th>
+          <th>Sintomas</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="{{consultas.length > 0 ? 'hidden': ''}}">
+          <td class="text-center" colspan="10">No existen registros todavía</td>
+        </tr>
+        <tr *ngFor="let consulta of consultas; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{consulta.fecha}}</td>
+          <td>{{consulta.hora}}</td>
+          <td>{{consulta.paciente.nombre}}</td>
+          <td>{{consulta.doctor.nombre}}</td>
+          <td>{{consulta.sintomas}}</td>
+          <td>
+            <div>
+              <button class="btn-option btn-save" (click)="activarModificar(consulta._id)">Editar</button>
+              <button class="btn-option btn-delete" (click)="eliminarConsulta(consulta._id)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

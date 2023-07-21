@@ -1,0 +1,78 @@
+<div class="container">
+  <h1>Recien Nacidos</h1>
+  <h3>{{modificarActivo ? "Actualizar": "Nuevo"}}</h3>
+  <form class="form" [formGroup]="nacimiento">
+    <div class="input-container">
+      <label for="">Nombre</label>
+      <input type="text" formControlName="nombre">
+      <sub class="error {{mensajeError('nombre') && 'hidden'}}">Solo se admiten letras mayusculas, minusculas y espacios. Asegurece de no tener espacios dobles y ni espacios al comienzo ni al final.</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Fecha</label>
+      <input type="date" formControlName="fecha">
+      <sub class="error {{mensajeError('fecha') && 'hidden'}}">Debes seleccionar una fecha</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Peso Bebé</label>
+      <input type="number" formControlName="peso">
+      <sub class="error {{mensajeError('peso') && 'hidden'}}">Solo se permiten números decimale superios a 0</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Genero</label>
+      <select name="genero" id="genero" formControlName="genero">
+        <option value="">Selecciona el género</option>
+        <option *ngFor="let genero of generos; let i = index" value="{{genero.id}}">{{genero.name}}</option>
+      </select>
+      <sub class="error {{mensajeError('genero') && 'hidden'}}">Debes seleccionar el género</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Enfermedades</label>
+      <select name="enfermedades" id="enfermedades" formControlName="enfermedades">
+        <option value="">Selecciona una opción</option>
+        <option *ngFor="let enfermedad of enfermedades; let i = index" value="{{enfermedad.id}}">{{enfermedad.name}}</option>
+      </select>
+      <sub class="error {{mensajeError('enfermedades') && 'hidden'}}">Debes seleccionar una opción</sub>
+    </div>
+    <div class="input-container">
+      <div class="btn btn-save {{modificarActivo && 'hidden'}}" (click)="guardarNacimiento()">Guardar</div>
+      <div class="btn btn-update {{!modificarActivo && 'hidden'}}" (click)="actualizarNacimiento()">Editar</div>
+      <div class="btn btn-cancel" (click)="resetearForm()">Cancelar</div>
+    </div>
+  </form>
+  <h3>Registrados</h3>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Nombre</th>
+          <th>F. Nacimiento</th>
+          <th>Peso</th>
+          <th>Género</th>
+          <th>Enfermedades</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="{{nacimientos.length > 0 ? 'hidden': ''}}">
+          <td class="text-center" colspan="10">No existen registros todavía</td>
+        </tr>
+        <tr *ngFor="let nacimiento of nacimientos; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{nacimiento.nombre}}</td>
+          <td>{{nacimiento.fecha}}</td>
+          <td>{{nacimiento.peso}}</td>
+          <td>{{nacimiento.genero}}</td>
+          <td>{{nacimiento.enfermedades}}</td>
+          <td>
+            <div>
+              <button class="btn-option btn-save" (click)="activarModificar(nacimiento._id)">Editar</button>
+              <button class="btn-option btn-delete" (click)="eliminarNacimiento(nacimiento._id)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

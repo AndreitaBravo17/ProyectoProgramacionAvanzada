@@ -1,0 +1,77 @@
+<div class="container">
+  <h1>Habitaciones</h1>
+  <h3>{{modificarActivo ? "Actualizar": "Nueva"}}</h3>
+  <form class="form" [formGroup]="habitacion">
+    <div class="input-container">
+      <label for="">Número</label>
+      <input type="number" formControlName="numero">
+      <sub class="error {{mensajeError('numero') && 'hidden'}}">Solo se permiten numeros enteros superiores a 0</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Tipo</label>
+      <select name="tipo" id="tipo" formControlName="tipo">
+        <option value="">Selecciona el tipo</option>
+        <option *ngFor="let tipoHabitacion of tiposHabitacion; let i = index" value="{{tipoHabitacion._id}}">{{tipoHabitacion.tipo}}</option>
+      </select>
+      <sub class="error {{mensajeError('tipo') && 'hidden'}}">Debes seleccionar el tipo</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Disponibilidad</label>
+      <select name="disponibilidad" id="disponibilidad" formControlName="disponibilidad">
+        <option value="">Selecciona la disponibilidad</option>
+        <option *ngFor="let disponibilidad of disponibilidades" value="{{disponibilidad.id}}">{{disponibilidad.name}}</option>
+      </select>
+      <sub class="error {{mensajeError('disponibilidad') && 'hidden'}}">Debes seleccionar la disponibilidad</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Costo</label>
+      <input type="number" name="costoDiario" id="costoDiario" formControlName="costoDiario">
+      <sub class="error {{mensajeError('costoDiario') && 'hidden'}}">Solo se permiten números enteros o decimales superiores a 0</sub>
+    </div>
+    <div class="input-container">
+      <label for="">Equipamento</label>
+      <textarea name="equipamento" id="equipamento" placeholder="Escribir aqui..." formControlName="equipamento"></textarea>
+      <sub class="error {{mensajeError('equipamento') && 'hidden'}}">Debes escribir el equipamento</sub>
+    </div>
+    <div class="input-container">
+      <div class="btn btn-save {{modificarActivo && 'hidden'}}" (click)="guardarHabitacion()">Guardar</div>
+      <div class="btn btn-update {{!modificarActivo && 'hidden'}}" (click)="actualizarHabitacion()">Editar</div>
+      <div class="btn btn-cancel" (click)="resetearForm()">Cancelar</div>
+    </div>
+  </form>
+  <h3>Registradas</h3>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>N. Habitacion</th>
+          <th>Tipo</th>
+          <th>Disponibilidad</th>
+          <th>Costo Diario</th>
+          <th>Equipamento</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="{{habitaciones.length > 0 ? 'hidden': ''}}">
+          <td class="text-center" colspan="10">No existen registros todavía</td>
+        </tr>
+        <tr *ngFor="let habitacion of habitaciones; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{habitacion.numero}}</td>
+          <td>{{habitacion.tipo.tipo}}</td>
+          <td>{{habitacion.disponibilidad}}</td>
+          <td>{{habitacion.costoDiario}}</td>
+          <td>{{habitacion.equipamento}}</td>
+          <td>
+            <div>
+              <button class="btn-option btn-save" (click)="activarModificar(habitacion._id)">Editar</button>
+              <button class="btn-option btn-delete" (click)="eliminarHabitacion(habitacion._id)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

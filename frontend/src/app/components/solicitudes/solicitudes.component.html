@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Solicitudes</h1>
+    <!-- Copia aquí el resto del contenido de la tabla y elimina el atributo *ngFor="let registro of registros" 
+    del <tr> para evitar un conflicto ya que ahora los registros se obtienen desde el componente. -->
+  </div>
+  
+  <div class="table-container">
+      <table>
+          <thead>
+              <tr>
+                  <th>N°</th>
+                  <th>Cédula</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Provincia</th>
+                  <th>Edad</th>
+                  <th>Teléfono</th>
+                  <th>Correo</th>
+                  <th>Genero</th>
+                  <th>Opciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let registro of registros; let i = index">
+                  <td>{{i + 1}}</td>
+                  <td>{{registro.cedula}}</td>
+                  <td>{{registro.nombres}}</td>
+                  <td>{{registro.apellidos}}</td>
+                  <td>{{registro.provincia}}</td>
+                  <td>{{registro.edad}}</td>
+                  <td>{{registro.telefono}}</td>
+                  <td>{{registro.correo}}</td>
+                  <td>{{registro.genero}}</td>
+                  <td>
+                      <div>
+                          <button class="btn-option btn-save">Aceptar</button>
+                          <button class="btn-option btn-delete" (click)="eliminarRegistro(registro._id)">Rechazar</button>
+                      </div>
+                  </td>
+              </tr>
+              <tr class="{{registros.length > 0 ? 'hidden': ''}}">
+                  <td class="text-center" colspan="10">No existen registros todavía</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
