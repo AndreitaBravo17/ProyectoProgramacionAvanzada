@@ -3,7 +3,7 @@ const Cursos = require('../models/cursosModel');
 // Controlador para crear un nuevo paciente
 const crearCursos = (req, res) => {
   const { nombreCurso, modalidad, costo, horas, fechaInicio } = req.body;
-
+//Datos
   const nuevoCursos = new Cursos({
     nombreCurso,
      modalidad, 
