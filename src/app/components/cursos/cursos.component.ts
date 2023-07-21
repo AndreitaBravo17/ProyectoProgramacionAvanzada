@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormControl,FormGroup } from '@angular/forms';
-
+import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
+import { CursoService } from 'src/app/curso-service.service';
+import { Curso } from 'src/app/interfaces/usuario';
+//import { UsuarioServiceService } from '../services/usuario-service.service';
 
 @Component({
   selector: 'app-cursos',
@@ -9,39 +11,74 @@ import { FormBuilder, Validators, FormControl,FormGroup } from '@angular/forms';
 })
 export class ProductosComponent implements OnInit {
   form: FormGroup;
+  cursosRegistrados: Curso[] = [];
 
-  constructor(private formBuilder: FormBuilder) {
-    this.buildForm();
-  }
+constructor(
+  private formBuilder: FormBuilder,
+  private cursoService: CursoService // Inyectar el servicio CursoService
+) {
+  this.buildForm();
+}
+
 
   ngOnInit(): void {
+    // Llamar al método para obtener los cursos registrados
+    this.getCursosRegistrados();
   }
 
   private buildForm() {
-    this.form = this.formBuilder.group({ // Sirve para validar los campos del formulario y para que se muestre el error en el html cuando el campo no es valido
-      codigoCtrl: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    this.form = this.formBuilder.group({
       productoCtrl: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      informacinoCtrl: new FormControl('', [Validators.required,Validators.maxLength(200),]),
-      correoCtrl: new FormControl('', [Validators.required, Validators.email,Validators.minLength(6)]),
-      selectCtrl: new FormControl('', [Validators.required]),
-      edadCtrl: new FormControl('', [Validators.required]),
-      ciudadCtrl: new FormControl('', [Validators.required]),
-      descripcionCtrl: new FormControl('', [Validators.required]),
+      costoCtrl: new FormControl('', [Validators.required]),
+      horasCtrl: new FormControl('', [Validators.required]),
+      modalidadCtrl: new FormControl('', [Validators.required]),
+      inicioCtrl: new FormControl('', [Validators.required]),
+      finalizaCtrl: new FormControl('', [Validators.required]),
     });
   }
 
   public save(event: Event) {
-    event.preventDefault(); // para que no se recargue la pagina al darle click al boton submit
-    if (this.form.valid) { // si el formulario es valido se ejecuta el codigo de abajo y se guarda el usuario en la base de datos
-      const value = this.form.value;
-      console.log(value);
+    event.preventDefault();
+    if (this.form.valid) {
+      const nuevoCurso: Curso = {
+        nombre: this.form.value.productoCtrl,
+        costo: this.form.value.costoCtrl,
+        horas: this.form.value.horasCtrl,
+        modalidad: this.form.value.modalidadCtrl,
+        inicio: this.form.value.inicioCtrl,
+        finaliza: this.form.value.finalizaCtrl,
+      };
+
+      // Llamar al método para guardar el curso en la base de datos
+      this.registrarCurso(nuevoCurso);
     } else {
       this.form.markAllAsTouched();
     }
   }
 
-  get emailField() {
-    return this.form.get('emailCtrl');// para que se muestre el error en el html cuando el email no es valido
+  private getCursosRegistrados() {
+    // Llamar al método del servicio para obtener los cursos registrados
+    this.cursoService.getCursos().subscribe(
+      (data: Curso[]) => {
+        this.cursosRegistrados = data;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
 
+  private registrarCurso(curso: Curso) {
+    // Llamar al método del servicio para registrar el curso en la base de datos
+    this.cursoService.registrarCurso(curso).subscribe(
+      () => {
+        // Actualizar la lista de cursos registrados y limpiar el formulario
+        this.getCursosRegistrados();
+        this.form.reset();
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
 }
