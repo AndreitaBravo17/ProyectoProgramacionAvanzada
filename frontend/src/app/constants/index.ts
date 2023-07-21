@@ -1,1 +1,1 @@
-export const urlApi: string = "http://localhost:3000/maternidad"
+export const urlApi: string = "http://52.15.36.189/academia"
