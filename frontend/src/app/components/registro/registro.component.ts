@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   selector: 'app-registro',
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
-})
+}) 
 export class RegistroComponent {
   urlRegistro: string = `${urlApi}/registro`
   urlCursos: string = `${urlApi}/cursos`

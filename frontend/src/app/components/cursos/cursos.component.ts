@@ -27,11 +27,11 @@ export class CursosComponent {
     ]),
     costo:  new FormControl('', [
       Validators.required,
-      Validators.pattern(REGEX_FORM.isValidAge)
+      Validators.pattern(REGEX_FORM.isValidNumber)
     ]),
     horas:  new FormControl('', [
       Validators.required,
-      Validators.pattern(REGEX_FORM.isValidAge)
+      Validators.pattern(REGEX_FORM.isValidNumber)
     ]),
     fechaInicio:  new FormControl('', [
       Validators.required

@@ -16,7 +16,7 @@ export class SolicitudesComponent implements OnInit {
   registros: any = []
   modificarActivo = false
   registroSeleccionado = ""
-
+ 
 
   registro: FormGroup = new FormGroup({
     cedula: new FormControl('', [
